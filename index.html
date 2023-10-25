@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>微博小红书查找器</title>
+    <title>小红书查找器</title>
     <style>
     .avatar {
             width: 60px;
@@ -126,9 +126,9 @@
         <img src="Dog.jpg" alt="作者头像">
     </div>
     <div class="container">
-        <div class="title">微博小红书查找器</div>
+        <div class="title">小红书查找器</div>
         <div class="instructions">
-            打开他/她分享的微博或小红书链接<br>
+            打开他/她分享的小红书链接<br>
             点击右上角的 "复制链接"<br>
             打开此网页并点击 "查询"<br>
             即可轻松找到对方的账号
@@ -139,21 +139,14 @@
     <script>
         document.getElementById('runShortcut').addEventListener('click', function() {
             navigator.clipboard.readText().then(function(clipboardText) {
-                const appuidRegex = /(?<=appuid=)[^&+]+/;
-                const transRegex = /(?<=trans=)[^_]+/;
-                
-                const appuidMatch = clipboardText.match(appuidRegex);
-                const transMatch = clipboardText.match(transRegex);
-                
-                if (appuidMatch) {
-                    const appuid = appuidMatch[0];
+                const regex = /(?<=appuid=)[^&+]+/;
+                const match = clipboardText.match(regex);
+
+                if (match) {
+                    const appuid = match[0];
                     const url = `https://www.xiaohongshu.com/user/profile/${appuid}`;
                     window.open(url, '_blank');
-                } else if (transMatch) {
-                    const trans = transMatch[0];
-                    const url = `https://weibo.com/u/${trans}`;
-                    window.open(url, '_blank');
-                    } else {
+                } else {
                     alert('请检查复制的链接是否正确');
                 }
             }).catch(function(error) {
