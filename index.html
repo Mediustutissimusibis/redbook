@@ -140,7 +140,7 @@
         document.getElementById('runShortcut').addEventListener('click', function() {
             navigator.clipboard.readText().then(function(clipboardText) {
                 const appuidRegex = /(?<=appuid=)[^&+]+/;
-                const transRegex = /(?<=trans=)[^_]+;
+                const transRegex = /(?<=trans=)[^_]+/;
                 
                 const appuidMatch = clipboardText.match(appuidRegex);
                 const transMatch = clipboardText.match(transRegex);
